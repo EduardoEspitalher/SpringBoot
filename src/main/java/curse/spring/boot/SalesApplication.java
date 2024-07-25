@@ -19,30 +19,30 @@ public class SalesApplication {
     public CommandLineRunner init(@Autowired Clientes clientes){
         return args -> {
             System.out.println("Salvando clientes...");
-            clientes.salvar(new Cliente("Eduardo"));
-            clientes.salvar(new Cliente("Kallel"));
+            clientes.save(new Cliente("Eduardo"));
+            clientes.save(new Cliente("Kallel"));
 
-            List<Cliente> todosClientes = clientes.obterTodos();
+            List<Cliente> todosClientes = clientes.findAll();
             todosClientes.forEach(System.out::println);
 
             System.out.println("Atualizando clientes...");
             todosClientes.forEach(c -> {
                 c.setNome(c.getNome() + " atualizado.");
-                clientes.atualizar(c);
+                clientes.save(c);
             });
 
-            todosClientes = clientes.obterTodos();
+            todosClientes = clientes.findAll();
             todosClientes.forEach(System.out::println);
 
             System.out.println("Buscando clientes");
-            clientes.buscarPorNome("Kal").forEach(System.out::println);
+            clientes.findByNomeLike("%Kal%").forEach(System.out::println);
 
             System.out.println("Deletendo clientes...");
-            clientes.obterTodos().forEach(c -> {
-                clientes.deletar(c);
+            clientes.findAll().forEach(c -> {
+                clientes.delete(c);
             });
 
-            todosClientes = clientes.obterTodos();
+            todosClientes = clientes.findAll();
             if (todosClientes.isEmpty()){
                 System.out.println("Nenhum cliente encontrado");
             }else{
