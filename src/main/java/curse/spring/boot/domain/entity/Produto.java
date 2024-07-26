@@ -1,10 +1,18 @@
 package curse.spring.boot.domain.entity;
-
+import javax.persistence.*;
 import java.math.BigDecimal;
-
+@Entity
+@Table
 public class Produto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id")
     private Integer id;
+
+    @Column(name="descicao")
     private String descricao;
+
+    @Column(name="preco_unitario")
     private BigDecimal preco;
 
     public BigDecimal getPreco() {
