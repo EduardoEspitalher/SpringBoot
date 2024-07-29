@@ -3,7 +3,7 @@ package curse.spring.boot;
 
 
 import curse.spring.boot.domain.entity.Cliente;
-import curse.spring.boot.domain.repositorio.Clientes;
+import curse.spring.boot.domain.repository.Clientes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
