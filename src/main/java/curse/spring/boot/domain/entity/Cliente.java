@@ -29,9 +29,10 @@ public class Cliente {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome) {
+    public Cliente(Integer id, String nome, String cpf) {
         this.id = id;
         this.nome = nome;
+        this.cpf = cpf;
     }
 
     public Cliente(String nome) {
