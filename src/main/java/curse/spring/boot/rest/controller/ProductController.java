@@ -1,4 +1,4 @@
-package curse.spring.boot.api.controller;
+package curse.spring.boot.rest.controller;
 
 import curse.spring.boot.domain.entity.Produto;
 import curse.spring.boot.domain.repository.Produtos;
