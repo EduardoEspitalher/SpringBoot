@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,8 +27,6 @@ public class ItemPedido {
     @JoinColumn(name  = "produto_id")
     private Produto produto;
 
-
+    @Column
     private Integer quantidade;
-
-
 }

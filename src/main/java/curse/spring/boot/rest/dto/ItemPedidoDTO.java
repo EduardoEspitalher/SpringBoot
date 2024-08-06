@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ItemPedidoDTO {
 
-    private Integer profuto;
+    private Integer produto;
     private Integer quantidade;
 
-    public Integer getProfuto() {
-        return profuto;
+    public Integer getProduto() {
+        return produto;
     }
 
-    public void setProfuto(Integer profuto) {
-        this.profuto = profuto;
+    public void setProduto(Integer produto) {
+        this.produto = produto;
     }
 
     public Integer getQuantidade() {
