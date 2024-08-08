@@ -5,10 +5,12 @@ import curse.spring.boot.domain.entity.Cliente;
 import curse.spring.boot.domain.entity.ItemPedido;
 import curse.spring.boot.domain.entity.Pedido;
 import curse.spring.boot.domain.entity.Produto;
+import curse.spring.boot.domain.enums.StatusPedido;
 import curse.spring.boot.domain.repository.Clientes;
 import curse.spring.boot.domain.repository.ItensPedido;
 import curse.spring.boot.domain.repository.Pedidos;
 import curse.spring.boot.domain.repository.Produtos;
+import curse.spring.boot.exception.PedidoNaoEncontradoException;
 import curse.spring.boot.exception.RegraNegocioException;
 import curse.spring.boot.rest.dto.ItemPedidoDTO;
 import curse.spring.boot.rest.dto.PedidoDTO;
@@ -43,9 +45,11 @@ public class PedidoServiceImpl implements PedidoService {
                                 "Código de cliente inválido."));
 
         Pedido pedido = new Pedido();
+
         pedido.setTotal(dto.getTotal());
         pedido.setDataPedido(LocalDate.now());
         pedido.setCliente(cliente);
+        pedido.setStatus(StatusPedido.REALIZADO);
 
         List<ItemPedido> itemPedido = converterItens(pedido, dto.getItens());
         repository.save(pedido);
@@ -57,6 +61,17 @@ public class PedidoServiceImpl implements PedidoService {
     @Override
     public Optional<Pedido> obterPedidoCompleto(Integer id) {
         return repository.findByIdFatchItens(id);
+    }
+
+    @Override
+    @Transactional
+    public void atualizaStatus(Integer id, StatusPedido statusPedido) {
+        repository
+                .findById(id)
+                .map(pedido -> {
+                    pedido.setStatus(statusPedido);
+                    return repository.save(pedido);
+                }).orElseThrow(()-> new PedidoNaoEncontradoException());
     }
 
     private List<ItemPedido>  converterItens(Pedido pedido, List<ItemPedidoDTO> itens){
