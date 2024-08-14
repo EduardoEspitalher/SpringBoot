@@ -26,8 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth
                 .userDetailsService(usuarioService)
                 .passwordEncoder(passwordEncoder());
-
-
     }
 
     @Override

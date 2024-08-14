@@ -1,5 +1,6 @@
-package curse.spring.boot;
+package curse.spring.boot.security.jwt;
 
+import curse.spring.boot.SalesApplication;
 import curse.spring.boot.domain.entity.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -14,7 +15,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
-import java.util.HashMap;
 
 @Service
 public class JwtService {
