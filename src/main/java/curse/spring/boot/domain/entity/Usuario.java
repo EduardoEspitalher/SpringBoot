@@ -23,12 +23,10 @@ public class Usuario {
     private Integer id;
 
     @Column
-    @NotEmpty
     @NotEmpty(message = "{campo.login.obrigatorio}")
     private String login;
 
     @Column
-    @NotEmpty
     @NotEmpty(message = "{campo.senha.obrigatorio}")
     private String senha;
 
