@@ -33,7 +33,7 @@ public class UsuarioController {
         return usuarioService.salvar(usuario);
     }
 
-    @GetMapping("/auth")
+    @PostMapping("/auth")
     public TokenDTO autenticar(@RequestBody CredenciaisDTO credenciais){
         try{
             Usuario usuario = Usuario.builder()
@@ -42,12 +42,8 @@ public class UsuarioController {
             UserDetails usuarioAutenticado = usuarioService.autenticar(usuario);
             String token = jwtService.gerarToken(usuario);
             return new TokenDTO(usuario.getLogin(),token);
-
         } catch ( UsernameNotFoundException | SenhaInvalidaException e) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, e.getMessage());
-
-        }catch (){
-
         }
     }
 }
